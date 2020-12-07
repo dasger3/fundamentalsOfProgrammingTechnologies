@@ -10,7 +10,6 @@ import java.util.Date;
 
 
 public class ATUTest {
-    @Before
 
     @Test
     public void EqualsATU_IsCompareCorrect_True() {
