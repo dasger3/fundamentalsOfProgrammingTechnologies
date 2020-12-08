@@ -44,14 +44,11 @@ public class ATUTest {
                 "Alex","Voronin","Mer", city1,city1.get(0),village1);
 
         //WHEN
-        boolean actual1 = region.equals(region1) && region1.equals(region);
+        Assert.assertEquals(region,region1);
 
         region1.setManager("Alex", "Voronin", "Mer");
-        boolean actual2 = region1.equals(region2) && region2.equals(region1);
+        Assert.assertEquals(region1,region2);
 
-        //THEN
-        Assert.assertTrue(actual1);
-        Assert.assertTrue(actual2);
     }
 
     @Rule
