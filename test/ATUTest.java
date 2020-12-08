@@ -58,7 +58,7 @@ public class ATUTest {
     public void Input_WrongEnum_ExceptionThrown(){
 
         //GIVEN
-        expectedEx.expect(RuntimeException.class);
+        expectedEx.expect(WrongInputException.class);
         expectedEx.expectMessage("No enum found with url: [DISTRICT]");
         District d1 = new District();
         String s = "DISTRICT/Central/12.4/532/Alex/Voronin/manager";
