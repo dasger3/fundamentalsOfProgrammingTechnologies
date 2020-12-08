@@ -24,7 +24,9 @@ public abstract class AdministrativeTerritorialUnit implements Information {
     public void setManager(String name, String surname, String position) {
         manager = new Manager(name,surname,position);
     }
-
+    public Manager getManager() {
+        return manager;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -49,12 +51,12 @@ public abstract class AdministrativeTerritorialUnit implements Information {
         manager.display();
     }
 
-    class Manager {
+    public class Manager {
         String name;
         String surname;
         String position;
 
-        Manager (String name, String surname, String position) {
+        public Manager(String name, String surname, String position) {
             this.name = name;
             this.surname = surname;
             this.position = position;

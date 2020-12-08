@@ -62,6 +62,7 @@ public class ATUTest {
 
         //GIVEN
         expectedEx.expect(RuntimeException.class);
+        expectedEx.expectMessage("No enum found with url: [DISTRICT]");
         District d1 = new District();
         String s = "DISTRICT/Central/12.4/532/Alex/Voronin/manager";
 
@@ -72,20 +73,18 @@ public class ATUTest {
     public void ChangeManager_IsChangeCorrect_True(){
 
         //GIVEN
-        District district1 = new District(TypeOfATU.DISTRICT,"Central",12.4,532,
-                "Alex", "Voronin","head");
-        District district2 = new District(TypeOfATU.DISTRICT,"Central",12.4,532,
-                "Sasha", "Kuhonokov","manager");
+        District district1 = new District();
+        district1.setManager("Maks", "Kurnevoi", "manager");
+        District.Manager manager1 = district1.new Manager("Alex", "Voronin", "head");
 
         Date data1 = new Date();
         Voting voting1 = new Voting("Local elections",data1);
 
         //WHEN
-        voting1.changeManager(district2, "Alex", "Voronin", "head");
-        boolean actual = district1.equals(district2) && district2.equals(district1);
+        voting1.changeManager(district1, "Alex", "Voronin", "head");
 
         //THEN
-        Assert.assertTrue(actual);
+        Assert.assertEquals(district1.getManager(),manager1);
 
     }
 }
