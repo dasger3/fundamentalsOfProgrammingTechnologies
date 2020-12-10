@@ -13,6 +13,10 @@ public class City extends AdministrativeTerritorialUnit implements Information{
         this.district = district;
     }
 
+    public String getPosition() {
+        return super.getManager().getPosition();
+    }
+
     public void display() {
         super.display();
         ListIterator<District> districtIter = district.listIterator();

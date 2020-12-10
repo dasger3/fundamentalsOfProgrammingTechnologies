@@ -28,6 +28,18 @@ public abstract class AdministrativeTerritorialUnit implements Information {
         return manager;
     }
 
+    public int getPopulation() {
+        return population;
+    }
+
+    public double getSquare() {
+        return square;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {
@@ -60,6 +72,10 @@ public abstract class AdministrativeTerritorialUnit implements Information {
             this.name = name;
             this.surname = surname;
             this.position = position;
+        }
+
+        public String getPosition() {
+            return position;
         }
 
         @Override

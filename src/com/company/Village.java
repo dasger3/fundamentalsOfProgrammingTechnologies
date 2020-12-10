@@ -10,6 +10,15 @@ public class Village extends AdministrativeTerritorialUnit implements Informatio
         this.occupation = occupation;
     }
 
+    public String getOccupation() {
+        return occupation;
+    }
+
+    @Override
+    public String toString() {
+        return typeOfATU + " " + title;
+    }
+
     public void display() {
         super.display();
         System.out.println("Occupation of the village is " + occupation);

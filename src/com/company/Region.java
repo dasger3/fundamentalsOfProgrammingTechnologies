@@ -1,14 +1,15 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Region extends AdministrativeTerritorialUnit implements Information{
     private ArrayList<City>city;
-    //private City city[];
     private City regionCenter;
     private ArrayList<Village>village;
-    //private Village village[];
 
      public Region (TypeOfATU typeOfATU, String title,  double square, int population,
                    String name, String surname, String postion,
@@ -33,4 +34,55 @@ public class Region extends AdministrativeTerritorialUnit implements Information
         }
         System.out.println("----------------------------------------------------------------------------------------------------------------------------");
     }
+
+    public ArrayList<City> getCity() {
+        return city;
+    }
+
+    public ArrayList<Village> getVillage() {
+        return village;
+    }
+
+
+    public static int getCityPopulationSum(List<City> list) {
+        return list.stream().
+                filter(x -> x.getSquare()>100).
+                mapToInt(City::getPopulation).
+                sum();
+    }
+
+    public static double getAveragePopulaiton(List<Village> list) {
+        return list.stream().
+                mapToInt(Village::getPopulation).
+                average().getAsDouble();
+    }
+//
+    public static int getMaxPopulation(List<City> list) {
+        return list.stream().
+                mapToInt(City::getPopulation).
+                max().getAsInt();
+    }
+
+    public static Map<Boolean, List<Village>> getGroupByOccupationAndPopulation(List<Village> list) {
+        return list.stream().
+                collect(Collectors.groupingBy((p) -> p.getOccupation().equals("harvest") && p.getPopulation() > 30));
+    }
+
+    public static List<String> getMostFrequentTitleNames(List<Region> regionList) {
+        List<String> result = new ArrayList<>();
+        regionList.stream()
+                .flatMap(x -> x.getCity().stream())
+                .collect(Collectors.toList())
+                .stream()
+                .collect(Collectors.groupingBy(City::getPosition))
+                .forEach((key, value) -> value.stream()
+                        .collect(Collectors.groupingBy(City::getTitle, Collectors.counting()))
+                        .entrySet()
+                        .stream()
+                        .max(Map.Entry.comparingByValue())
+                        .ifPresent(x -> result.add(x.getKey())));
+        return result;
+    }
+
+
 }
