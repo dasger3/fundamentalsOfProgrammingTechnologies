@@ -47,6 +47,7 @@ public class ATUTest {
         Assert.assertEquals(region,region1);
 
         region1.setManager("Alex", "Voronin", "Mer");
+        region1.setManager("Alex", "Voronin", "Mer");
         Assert.assertEquals(region1,region2);
         //test 2
     }
