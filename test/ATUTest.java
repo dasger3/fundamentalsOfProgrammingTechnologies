@@ -68,7 +68,7 @@ public class ATUTest {
         d1.input(s);
     }
     @Test
-    public void ChangeManager_IsChangeCorrect_True(){
+    public void ChangeManager1_IsChangeCorrect_True(){
 
         //GIVEN
         District district1 = new District();
