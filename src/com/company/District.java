@@ -28,7 +28,6 @@ public class District extends AdministrativeTerritorialUnit implements Informati
             System.out.println(e);
             throw e;
         }
-
     }
 
     public void display() {

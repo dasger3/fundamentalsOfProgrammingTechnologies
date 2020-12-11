@@ -76,7 +76,7 @@ public class CollectionsToolsTest {
 
 
     @Test
-    public void getCityPopulationSum() {
+    public void getCityPopulationSum_IsSumCorrect_True() {
         //GIVEN
         //only where square > 100
         //population square
@@ -94,7 +94,7 @@ public class CollectionsToolsTest {
     }
 
     @Test
-    public void getAveragePopulaiton() {
+    public void getAveragePopulaiton_IsAverageCorrect_True() {
         //GIVEN
         //10 100 50 4
         double expected = 41;
@@ -107,7 +107,7 @@ public class CollectionsToolsTest {
     }
 
     @Test
-    public void getMaxPopulation() {
+    public void getMaxPopulation_IsMaxCorrect_True() {
         //GIVEN
         //100 200 300 400
         int expected = 400;
@@ -120,19 +120,29 @@ public class CollectionsToolsTest {
     }
 
     @Test
-    public void getGroupByMaterialAndLengthTest() {
-        Map<Boolean, List<Village>> actual = Region.getGroupByOccupationAndPopulation(region.getVillage());
+    public void getVillageWithFilter_IsFilterCorrect_True() {
+        //GIVEN
         Map<Boolean, List<Village>> expected = new HashMap<>();
         expected.put(Boolean.TRUE, Arrays.asList(village1.get(1)));
         expected.put(Boolean.FALSE, Arrays.asList(village1.get(0),village1.get(2),village1.get(3)));
 
-        Assert.assertEquals(expected,actual);
+        //WHEN
+        Map<Boolean, List<Village>> actual;
+        actual = Region.getVillageWithFilter(region.getVillage(),p -> p.getOccupation().equals("harvest") &&
+                p.getPopulation()>40);
+
+        //THEN
+        Assert.assertEquals(expected, actual);
     }
     @Test
-    public void getMostFrequentTitleNames() {
-
-        List<String> result = Region.getMostFrequentTitleNames(listOfRegion);
+    public void getMostFrequentTitleNames_TwoMostFrequentTitles_True() {
+        //GIVEN
         List<String> expected = Arrays.asList("Poltava", "Lutsk");
+
+        //WHEN
+        List<String> result = Region.getMostFrequentTitleNames(listOfRegion);
+
+        //THEN
         Assert.assertEquals(result, expected);
     }
 }

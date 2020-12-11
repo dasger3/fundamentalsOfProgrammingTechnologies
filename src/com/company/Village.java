@@ -14,10 +14,10 @@ public class Village extends AdministrativeTerritorialUnit implements Informatio
         return occupation;
     }
 
-    @Override
-    public String toString() {
-        return typeOfATU + " " + title;
-    }
+    //@Override
+    //public String toString() {
+    //    return typeOfATU + " " + title;
+    //}
 
     public void display() {
         super.display();

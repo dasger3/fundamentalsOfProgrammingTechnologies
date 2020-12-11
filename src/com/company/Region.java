@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Region extends AdministrativeTerritorialUnit implements Information{
@@ -56,18 +57,19 @@ public class Region extends AdministrativeTerritorialUnit implements Information
                 mapToInt(Village::getPopulation).
                 average().getAsDouble();
     }
-//
+
     public static int getMaxPopulation(List<City> list) {
         return list.stream().
                 mapToInt(City::getPopulation).
                 max().getAsInt();
     }
 
-    public static Map<Boolean, List<Village>> getGroupByOccupationAndPopulation(List<Village> list) {
-        return list.stream().
-                collect(Collectors.groupingBy((p) -> p.getOccupation().equals("harvest") && p.getPopulation() > 30));
-    }
+    public static Map<Boolean, List<Village>> getVillageWithFilter(List<Village> list, Predicate<Village> condition) {
 
+        return list.stream().
+                collect(Collectors.partitioningBy(condition));
+
+     }
     public static List<String> getMostFrequentTitleNames(List<Region> regionList) {
         List<String> result = new ArrayList<>();
         regionList.stream()
