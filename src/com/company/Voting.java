@@ -10,7 +10,8 @@ public class Voting {
         this.name = name;
         this.dateOfVoting = dateOfVoting;
     }
-    public void changeManager (AdministrativeTerritorialUnit ATU, String name, String surname, String position) {
+    public AdministrativeTerritorialUnit changeManager (AdministrativeTerritorialUnit ATU, String name, String surname, String position) {
         ATU.setManager(name,surname,position);
+        return ATU;
     }
 }
