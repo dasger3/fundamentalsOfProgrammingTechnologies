@@ -88,7 +88,7 @@ public class CollectionsToolsTest {
 
         //WHEN
         int actual = Region.getCityPopulationSum(region.getCity());
-
+        System.out.println("test2.1");
         //THEN
         Assert.assertEquals(actual, expected);
     }
@@ -101,7 +101,7 @@ public class CollectionsToolsTest {
 
         //WHEN
         double actual = Region.getAveragePopulaiton(region.getVillage());
-
+        System.out.println("test2.2");
         //THEN
         Assert.assertEquals(actual, expected, 0);
     }
@@ -114,7 +114,7 @@ public class CollectionsToolsTest {
 
         //WHEN
         int actual = Region.getMaxPopulation(region.getCity());
-
+        System.out.println("test2.3");
         //THEN
         Assert.assertEquals(actual, expected);
     }
@@ -130,7 +130,7 @@ public class CollectionsToolsTest {
         Map<Boolean, List<Village>> actual;
         actual = Region.getVillageWithFilter(region.getVillage(),p -> p.getOccupation().equals("harvest") &&
                 p.getPopulation()>40);
-
+        System.out.println("test2.4");
         //THEN
         Assert.assertEquals(expected, actual);
     }
@@ -141,7 +141,7 @@ public class CollectionsToolsTest {
 
         //WHEN
         List<String> result = Region.getMostFrequentTitleNames(listOfRegion);
-
+        System.out.println("test2.5");
         //THEN
         Assert.assertEquals(result, expected);
     }

@@ -39,12 +39,14 @@ public class ATUTest {
 
         Region region1 = new Region(TypeOfATU.REGION,"Dnipropetrovska", 22.3,10000,
                 "Borys","Filatov","governor", city1,city1.get(0),village1);
-        region1.display();
+        //region1.display();
         Region region2 = new Region(TypeOfATU.REGION,"Dnipropetrovska", 22.3,10000,
                 "Alex","Voronin","Mer", city1,city1.get(0),village1);
 
         //WHEN
         Assert.assertEquals(region,region1);
+
+        System.out.println("test1.1");
 
         region1.setManager("Alex", "Voronin", "Mer");
         region1.setManager("Alex", "Voronin", "Mer");
@@ -63,7 +65,7 @@ public class ATUTest {
         expectedEx.expectMessage("No enum found with url: [DISTRICT]");
         District d1 = new District();
         String s = "DISTRICT/Central/12.4/532/Alex/Voronin/manager";
-
+        System.out.println("test1.2");
         //WHEN
         d1.input(s);
     }
@@ -80,7 +82,7 @@ public class ATUTest {
 
         //WHEN
         voting1.changeManager(district1, "Alex", "Voronin", "head");
-
+        System.out.println("test1.3");
         //THEN
         Assert.assertEquals(district1.getManager(),manager1);
     }

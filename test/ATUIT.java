@@ -1,15 +1,12 @@
 import com.company.*;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.*;
-import static org.mockito.Mockito.*;
+import org.junit.rules.ExpectedException;
 
+import static org.mockito.Mockito.*;
 import java.util.*;
-
-import static org.mockito.Mockito.*;
-
 
 
 public class ATUIT {
@@ -17,6 +14,8 @@ public class ATUIT {
 
     ArrayList<City>listOfCity1;
     ArrayList<City>listOfCity2;
+
+    District district;
 
     @Before
     public void setUp () {
@@ -34,6 +33,7 @@ public class ATUIT {
             listOfCity2.add(mock(City.class));
         }
 
+        district = mock(District.class);
     }
 
     @Test
@@ -104,4 +104,12 @@ public class ATUIT {
         Assert.assertEquals(expected,actual);
         verify(listOfRegion.get(1), times(0)).getPopulation();
     }
+
+    @Test(expected = WrongInputException.class)
+    public void Input_IncorrectInput_ExceptionThrown()throws WrongInputException{
+        doThrow(new WrongInputException("No enum found with url: [DISTRICT]"))
+                .when(district).input("DISTRICT/Central/12.4/532/Alex/Voronin/manager");
+        district.input("DISTRICT/Central/12.4/532/Alex/Voronin/manager");
+    }
+
 }

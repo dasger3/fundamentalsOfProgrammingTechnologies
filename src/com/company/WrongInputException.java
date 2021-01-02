@@ -2,7 +2,7 @@ package com.company;
 
 public class WrongInputException extends RuntimeException {
 
-    WrongInputException (String message) {
+    public WrongInputException (String message) {
         super(message);
     }
 
