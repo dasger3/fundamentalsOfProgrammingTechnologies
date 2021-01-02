@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-failsafe-plugin/xsd/failsafe-test-report-3.0.xsd" version="3.0" name="ATUIT" time="0.897" tests="3" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="14"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1251"/>
+    <property name="java.class.path" value="C:\Users\HP\Desktop\Учеба\3 курс 1 семестр\Java\target\test-classes;C:\Users\HP\Desktop\Учеба\3 курс 1 семестр\Java\target\classes;C:\Users\HP\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\HP\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\HP\.m2\repository\org\mockito\mockito-core\3.6.0\mockito-core-3.6.0.jar;C:\Users\HP\.m2\repository\net\bytebuddy\byte-buddy\1.10.15\byte-buddy-1.10.15.jar;C:\Users\HP\.m2\repository\net\bytebuddy\byte-buddy-agent\1.10.15\byte-buddy-agent-1.10.15.jar;C:\Users\HP\.m2\repository\org\objenesis\objenesis\3.1\objenesis-3.1.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Europe/Kiev"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="java.vm.specification.version" value="14"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="RU"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-14.0.1\bin"/>
+    <property name="sun.java.command" value="C:\Temp\surefire10876069399641311634\surefirebooter1630711729545727384.jar C:\Temp\surefire10876069399641311634 2020-12-23T16-19-12_928-jvmRun1 surefire293644603645571110tmp surefire_015354471884917136935tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Users\HP\Desktop\Учеба\3 курс 1 семестр\Java\target\test-classes;C:\Users\HP\Desktop\Учеба\3 курс 1 семестр\Java\target\classes;C:\Users\HP\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\HP\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\HP\.m2\repository\org\mockito\mockito-core\3.6.0\mockito-core-3.6.0.jar;C:\Users\HP\.m2\repository\net\bytebuddy\byte-buddy\1.10.15\byte-buddy-1.10.15.jar;C:\Users\HP\.m2\repository\net\bytebuddy\byte-buddy-agent\1.10.15\byte-buddy-agent-1.10.15.jar;C:\Users\HP\.m2\repository\org\objenesis\objenesis\3.1\objenesis-3.1.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\HP"/>
+    <property name="user.language" value="ru"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2020-04-14"/>
+    <property name="idea.version2019.2.2" value="true"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-14.0.1"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\HP\Desktop\Учеба\3 курс 1 семестр\Java"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Temp\surefire10876069399641311634\surefirebooter1630711729545727384.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="14.0.1+7"/>
+    <property name="user.name" value="HP"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="Cp1251"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\HP\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Temp\"/>
+    <property name="java.version" value="14.0.1"/>
+    <property name="user.dir" value="C:\Users\HP\Desktop\Учеба\3 курс 1 семестр\Java"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-14.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\PC Connectivity Solution\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Windows Live\Shared;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\nodejs\;C:\Program Files (x86)\Brackets\command;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\Users\HP\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk-14.0.1\bin;C:\Users\HP\AppData\Roaming\Composer\vendor\bin;C:\Users\HP\AppData\Roaming\npm;C:\Users\HP\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\HP\.dotnet\tools;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="14.0.1+7"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="58.0"/>
+  </properties>
+  <testcase name="getMostFrequentTitleNames_whenRegionIsValid_True" classname="ATUIT" time="0.828"/>
+  <testcase name="Input_IncorrectInput_ExceptionThrown" classname="ATUIT" time="0.003"/>
+  <testcase name="getCityPopulationSum_whenVillageIsValid_True" classname="ATUIT" time="0.008"/>
+</testsuite>
