@@ -1,14 +1,13 @@
-import com.company.*;
-import org.junit.Assert;
+import controllers.Controller;
+import models.pojo.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
 
-public class CollectionsToolsTest {
+public class TestMVC {
 
-    private ArrayList<District>district1;
+    private ArrayList<District> district1;
     private ArrayList<District>district2;
     private ArrayList<Village>village1;
     private ArrayList<City>city1;
@@ -73,76 +72,12 @@ public class CollectionsToolsTest {
         listOfRegion.add(region);
         listOfRegion.add(region1);
     }
-
-
     @Test
-    public void getCityPopulationSum_IsSumCorrect_True() {
-        //GIVEN
-        //only where square > 100
-        //population square
-        //100        2000
-        //200        15
-        //300        150
-        //400        15
-        int expected = 400;
+    public void ControllerTest () {
+        Controller controller = new Controller();
+        controller.createRegion(region);
+        controller.getRegion("Example");
 
-        //WHEN
-        int actual = Region.getCityPopulationSum(region.getCity());
-        System.out.println("test2.1");
-        //THEN
-        Assert.assertEquals(actual, expected);
-    }
-
-    @Test
-    public void getAveragePopulaiton_IsAverageCorrect_True() {
-        //GIVEN
-        //10 100 50 4
-        double expected = 41;
-
-        //WHEN
-        double actual = Region.getAveragePopulaiton(region.getVillage());
-        System.out.println("test2.2");
-        //THEN
-        Assert.assertEquals(actual, expected, 0);
-    }
-
-    @Test
-    public void getMaxPopulation_IsMaxCorrect_True() {
-        //GIVEN
-        //100 200 300 400
-        int expected = 400;
-
-        //WHEN
-        int actual = Region.getMaxPopulation(region.getCity());
-        System.out.println("test2.3");
-        //THEN
-        Assert.assertEquals(actual, expected);
-    }
-
-    @Test
-    public void getVillageWithFilter_IsFilterCorrect_True() {
-        //GIVEN
-        Map<Boolean, List<Village>> expected = new HashMap<>();
-        expected.put(Boolean.TRUE, Arrays.asList(village1.get(1)));
-        expected.put(Boolean.FALSE, Arrays.asList(village1.get(0),village1.get(2),village1.get(3)));
-
-        //WHEN
-        Map<Boolean, List<Village>> actual;
-        actual = Region.getVillageWithFilter(region.getVillage(),p -> p.getOccupation().equals("harvest") &&
-                p.getPopulation()>40);
-        System.out.println("test2.4");
-        //THEN
-        Assert.assertEquals(expected, actual);
-    }
-    @Test
-    public void getMostFrequentTitleNames_TwoMostFrequentTitles_True() {
-        //GIVEN
-        List<String> expected = Arrays.asList("Poltava", "Lutsk");
-
-        //WHEN
-        List<String> result = Region.getMostFrequentTitleNames(listOfRegion);
-        System.out.println("test2.5");
-        //THEN
-        Assert.assertEquals(result, expected);
+        controller.getStatistics(listOfRegion);
     }
 }

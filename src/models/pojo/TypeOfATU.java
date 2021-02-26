@@ -1,4 +1,6 @@
-package com.company;
+package models.pojo;
+
+import models.exceptions.WrongInputException;
 
 public enum TypeOfATU {
         REGION ("Region"),
