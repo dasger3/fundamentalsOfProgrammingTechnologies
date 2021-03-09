@@ -1,6 +1,6 @@
 package models.pojo;
 
-import models.exceptions.WrongInputException;
+import models.exceptions.ATUNotFoundException;
 
 public enum TypeOfATU {
         REGION ("Region"),
@@ -21,13 +21,13 @@ public enum TypeOfATU {
             return title;
         }
 
-        public static TypeOfATU getTypeByUrl(String url) throws WrongInputException {
+        public static TypeOfATU getTypeByUrl(String url) throws ATUNotFoundException {
                 for (TypeOfATU env : values()) {
                         if (env.getTitle().equals(url)) {
                                 return env;
                         }
                 }
-                throw new WrongInputException("No enum found with url: [" + url + "]");
+                throw new ATUNotFoundException("No enum found with url: [" + url + "]");
         }
 
         @Override

@@ -1,9 +1,14 @@
-import controllers.Controller;
+import controllers.ATUController;
+import models.exceptions.ATUNotFoundException;
 import models.pojo.*;
+import models.repository.ATURepository;
+import models.services.ATUService;
+import models.services.ATUServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
-
+import static org.mockito.Mockito.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class TestMVC {
 
@@ -72,12 +77,13 @@ public class TestMVC {
         listOfRegion.add(region);
         listOfRegion.add(region1);
     }
-    @Test
-    public void ControllerTest () {
-        Controller controller = new Controller();
-        controller.createRegion(region);
-        controller.getRegion("Example");
 
-        controller.getStatistics(listOfRegion);
+    @Test(expected = ATUNotFoundException.class)
+    public void ControllerTest () throws ATUNotFoundException {
+        ATURepository atuRepository = new ATURepository();
+        //when(atuRepository.getAllATU()).thenReturn(listOfRegion);
+        ATUService atuService= new ATUServiceImpl(atuRepository);
+        ATUController atuController = new ATUController(atuService);
+        atuController.findATUByTitle("12");
     }
 }
