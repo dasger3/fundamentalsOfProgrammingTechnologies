@@ -1,14 +1,13 @@
-import controllers.ATUController;
-import models.exceptions.ATUNotFoundException;
+import controllers.ATUFindController;
+import exceptions.ATUNotFoundException;
 import models.pojo.*;
-import models.repository.ATURepository;
-import models.services.ATUService;
-import models.services.ATUServiceImpl;
+import repository.ATURepository;
+import services.ATUGetService;
+import services.ATUGetServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
-import static org.mockito.Mockito.*;
+
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class TestMVC {
 
@@ -81,9 +80,8 @@ public class TestMVC {
     @Test(expected = ATUNotFoundException.class)
     public void ControllerTest () throws ATUNotFoundException {
         ATURepository atuRepository = new ATURepository();
-        //when(atuRepository.getAllATU()).thenReturn(listOfRegion);
-        ATUService atuService= new ATUServiceImpl(atuRepository);
-        ATUController atuController = new ATUController(atuService);
-        atuController.findATUByTitle("12");
+        ATUGetService atuGetService = new ATUGetServiceImpl(atuRepository);
+        ATUFindController ATUFIndController = new ATUFindController(atuGetService);
+        AdministrativeTerritorialUnit test1 = ATUFIndController.findATUByTitle("12");
     }
 }

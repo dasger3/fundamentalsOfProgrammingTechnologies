@@ -1,5 +1,10 @@
 package models.pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -7,12 +12,14 @@ import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+@EqualsAndHashCode(callSuper = true)
+@Data
+@NoArgsConstructor
 public class Region extends AdministrativeTerritorialUnit {
     private ArrayList<City>city;
     private City regionCenter;
     private ArrayList<Village>village;
 
-    public Region () {};
     public Region (TypeOfATU typeOfATU, String title,  double square, int population,
                    String name, String surname, String position,
                    ArrayList<City>city,City regionCenter,ArrayList<Village>village) {
@@ -21,31 +28,17 @@ public class Region extends AdministrativeTerritorialUnit {
         this.regionCenter = regionCenter;
         this.village = village;
     }
-
-    public ArrayList<City> getCity() {
-        return city;
+    public Region (TypeOfATU typeOfATU, String title,  double square, int population,
+                   String name, String surname, String position) {
+        super(typeOfATU,title,square, population, name,surname,position);
+        this.city = new ArrayList<City>();
+        this.village = new ArrayList<Village>();
     }
 
-    public void setCity(ArrayList<City> city) {
-        this.city = city;
+    public void addCity (City city) {
+        this.city.add(city);
     }
-
-    public City getRegionCenter() {
-        return regionCenter;
+    public void addVillage (Village village) {
+        this.village.add(village);
     }
-
-    public void setRegionCenter(City regionCenter) {
-        this.regionCenter = regionCenter;
-    }
-
-    public ArrayList<Village> getVillage() {
-        return village;
-    }
-
-    public void setVillage(ArrayList<Village> village) {
-        this.village = village;
-    }
-
-
-
 }

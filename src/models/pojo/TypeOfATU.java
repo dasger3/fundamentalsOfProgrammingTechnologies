@@ -1,6 +1,6 @@
 package models.pojo;
 
-import models.exceptions.ATUNotFoundException;
+import exceptions.ATUNotFoundException;
 
 public enum TypeOfATU {
         REGION ("Region"),

@@ -1,18 +1,20 @@
 package controllers;
 
 import models.pojo.Region;
-import models.services.StatisticsServiceImpl;
+import services.StatisticsServiceImpl;
 import views.ConsoleView;
 import views.View;
 
 import java.util.ArrayList;
 
 public class StatisticsController {
-    StatisticsServiceImpl statisticsService;
-    View view = new ConsoleView();
+
+    private StatisticsServiceImpl statisticsService;
+    private View view = new ConsoleView();
     public StatisticsController (StatisticsServiceImpl statisticsService) {
         this.statisticsService = statisticsService;
     }
+
     public void getStatisticsOfRegion (ArrayList<Region> listOfRegion) {
         view.ShowCityPopulationSum(statisticsService.getCityPopulationSum(listOfRegion.get(0).getCity()));
         view.ShowAveragePopulationOfVillage(statisticsService.getAveragePopulation(listOfRegion.get(0).getVillage()));
