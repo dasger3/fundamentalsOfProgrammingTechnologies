@@ -2,6 +2,7 @@ package voronin.model;
 
 import voronin.exception.ATUNotFoundException;
 
+
 public enum TypeOfATU {
         REGION ("Region"),
         DISTRICT ("District"),

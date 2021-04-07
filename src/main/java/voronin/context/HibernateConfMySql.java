@@ -41,7 +41,7 @@ public class HibernateConfMySql {
     public Properties hibernateProperties() {
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty(
-                "hibernate.hbm2ddl.auto", "create-drop"); //update, validate, create, create-drop create-drop
+                "hibernate.hbm2ddl.auto", "update"); //update, validate, create, create-drop create-drop
         hibernateProperties.setProperty(
                 "hibernate.dialect",
                 "org.hibernate.dialect.MySQL5InnoDBDialect"

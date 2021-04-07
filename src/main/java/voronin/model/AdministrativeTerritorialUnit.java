@@ -3,25 +3,27 @@ package voronin.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+
 
 @Setter
 @Getter
 @EqualsAndHashCode
-@NoArgsConstructor
+
 @Entity
 @Table (name = "atu")
-public abstract class AdministrativeTerritorialUnit<T, V> {
+public class AdministrativeTerritorialUnit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long atuId;
 
-    @Column
-    private Long parent_id = 0L;
+    @OneToOne
+    @JoinColumn(name = "parent_id")
+    private AdministrativeTerritorialUnit parent;
 
-    @Column
-    private Long center_id = -1L;
+    @OneToOne
+    @JoinColumn(name = "center_id", unique = true)
+    private AdministrativeTerritorialUnit center_id;
 
     @Enumerated(EnumType.STRING)
     private TypeOfATU typeOfATU;
@@ -35,37 +37,37 @@ public abstract class AdministrativeTerritorialUnit<T, V> {
     @Column
     private int population;
 
-    @Embedded
+    @OneToOne
+    @JoinColumn(name = "manager_id", unique = true)
     private Manager manager;
 
-    @Transient
-    private ArrayList<T> internalList1;
-    @Transient
-    private ArrayList<V> internalList2;
 
+    public AdministrativeTerritorialUnit () {
+
+    }
     AdministrativeTerritorialUnit(TypeOfATU typeOfATU, String title,  double square, int population, String name, String surname, String position) {
         this.typeOfATU = typeOfATU;
         this.title = title;
         this.square = square;
         this.population = population;
         manager = new Manager(name,surname,position);
-        internalList1 = new ArrayList<T>();
-        internalList2 = new ArrayList<V>();
+        //internalList1 = new ArrayList<Long>();
+        //internalList2 = new ArrayList<Long>();
 
     }
 
 
-    public void addToList1 (T aty1) {
-        internalList1.add(aty1);
-    }
+    //    public void addToList1 (T aty1) {
+//        internalList1.add(aty1);
+//    }
+//
+//    public void addToList2 (V aty2) {
+//        internalList2.add(aty2);
+//    }
 
-    public void addToList2 (V aty2) {
-        internalList2.add(aty2);
-    }
-
-    public void setManager(String name, String surname, String position) {
-        this.manager = new Manager(name,surname,position);
-    }
+//    public void setManager(String name, String surname, String position) {
+//        this.manager = new Manager(name,surname,position);
+//    }
 
     @Override
     public String toString () {
@@ -77,15 +79,5 @@ public abstract class AdministrativeTerritorialUnit<T, V> {
         return str.toString();
     }
 
-    @Embeddable
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
 
-    public class Manager {
-
-        String name;
-        String surname;
-        String position;
-    }
 }

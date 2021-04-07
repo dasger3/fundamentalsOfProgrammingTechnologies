@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,31 +21,27 @@ public class ATUServiceImpl implements ATUService {
     private final ATURepository atuRepository;
 
     public List<AdministrativeTerritorialUnit> getATUs () {
-        return atuRepository.findAllATU();
+        return new ArrayList<>(atuRepository.findAll());
     }
 
     public AdministrativeTerritorialUnit getATUById(Long id) {
-        return  atuRepository.findATUById(id).orElseThrow(() -> new ATUNotFoundException(id));
+        return  atuRepository.findById(id).orElseThrow(() -> new ATUNotFoundException(id));
     }
-
+//
     public AdministrativeTerritorialUnit getATUByTitle(String title) {
-        return  atuRepository.findAllATU().stream()
-                        .filter(sub -> sub.getTitle().equals(title))
-                        .findAny()
-                        .orElseThrow(() -> new ATUNotFoundException(title));
+        return  atuRepository.findByTitle(title);
     }
 
-    public List<AdministrativeTerritorialUnit> getInternalList1ById (Long id) {
-        return getATUById(id).getInternalList1();
-    }
-    public List<AdministrativeTerritorialUnit> getInternalList2ById (Long id) {
-        return getATUById(id).getInternalList2();
-    }
     public List<AdministrativeTerritorialUnit> getAllATUByType (String type) {
-        return atuRepository.findAllATU().stream()
-                .filter(atu -> atu.getTypeOfATU().equals(TypeOfATU.getTypeByUrl(type))).collect(Collectors.toList());
+        return atuRepository.findAllByTypeOfATUEquals(TypeOfATU.getTypeByUrl(type));
     }
-
+//
+////    public List<AdministrativeTerritorialUnit> getInternalList1ById (Long id) {
+////        return getATUById(id).getInternalList1();
+////    }
+////    public List<AdministrativeTerritorialUnit> getInternalList2ById (Long id) {
+////        return getATUById(id).getInternalList2();
+////    }
 
 
 

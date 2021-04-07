@@ -1,20 +1,30 @@
 package voronin.repository;
 
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import voronin.model.AdministrativeTerritorialUnit;
-import voronin.model.City;
-import voronin.model.User;
-import voronin.model.Village;
+import voronin.model.TypeOfATU;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface ATURepository {
 
-    List<AdministrativeTerritorialUnit> findAllATU();
-    Optional<AdministrativeTerritorialUnit> findATUById (Long id);
-    void saveATU (AdministrativeTerritorialUnit atu);
-    void updateATU (AdministrativeTerritorialUnit atu);
-    void deleteATU (Long id);
+@Repository
+public interface ATURepository extends JpaRepository<AdministrativeTerritorialUnit, Long> {
+
+    List<AdministrativeTerritorialUnit> findAll();
+
+    Optional<AdministrativeTerritorialUnit> findById (Long id);
+
+    AdministrativeTerritorialUnit findByTitle(String title);
+
+    List<AdministrativeTerritorialUnit> findAllByTypeOfATUEquals(TypeOfATU t);
+
+//    Object save (AdministrativeTerritorialUnit atu);
+//
+//    void updateATU (AdministrativeTerritorialUnit atu);
+//
+//    void deleteATU (Long id);
 
 }

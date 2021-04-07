@@ -8,6 +8,6 @@ public class ATUNotFoundException extends NoSuchElementException {
         super("No ATU with " + title + " found");
     }
     public ATUNotFoundException(Long id) {
-        super("No ATU with " + id + "id found");
+        super("No ATU with " + id + " id found");
     }
 }
