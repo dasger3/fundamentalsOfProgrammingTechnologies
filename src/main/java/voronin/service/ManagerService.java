@@ -10,7 +10,7 @@ public interface ManagerService {
     List<Manager> getAllManager();
 
     Manager getManagerById(Long id);
-    Manager getManagerByName(String name);
+    List<Manager> getManagerByName(String name);
 
     void saveManager(Manager manager);
     void deleteManager(Long id);

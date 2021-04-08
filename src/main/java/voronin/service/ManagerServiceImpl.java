@@ -26,8 +26,8 @@ public class ManagerServiceImpl implements ManagerService{
     }
 
     @Override
-    public Manager getManagerByName(String name) {
-        return managerRepository.findByName(name).orElseThrow(() -> new ObjectNotFoundException(Manager.class.getName(), name));
+    public List<Manager> getManagerByName(String name) {
+        return managerRepository.findAllByName(name).orElseThrow(() -> new ObjectNotFoundException(Manager.class.getName(), name));
     }
 
     @Override
@@ -48,6 +48,7 @@ public class ManagerServiceImpl implements ManagerService{
     public void updateManager(Long id, Manager manager) {
         if (managerRepository.findById(id).isEmpty())
             throw new ObjectNotFoundException(Manager.class.getSimpleName(),id);
+        manager.setManagerId(id);
         managerRepository.save(manager);
     }
 }

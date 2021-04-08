@@ -15,5 +15,11 @@ public interface ATUService {
     List<AdministrativeTerritorialUnit> getAllATUByType (String type);
 
     void saveATU (AdministrativeTerritorialUnit atu);
+    void deleteATU (Long id);
+    void updateATU (Long id, AdministrativeTerritorialUnit atu);
+
+    void addParentATU (Long id, Long idParent);
+    void addCenterATU (Long id, Long idCenter);
+    void addManagerToATU (Long id, Long idManager);
 
 }

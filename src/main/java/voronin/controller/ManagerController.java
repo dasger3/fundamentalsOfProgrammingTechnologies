@@ -26,7 +26,7 @@ public class ManagerController {
     }
 
     @GetMapping("/name/{name}")
-    public Manager findManagerById (@PathVariable String name) {
+    public List<Manager> findManagerByName (@PathVariable String name) {
         return managerService.getManagerByName(name);
     }
 
