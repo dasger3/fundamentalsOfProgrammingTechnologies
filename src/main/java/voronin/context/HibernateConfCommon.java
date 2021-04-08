@@ -55,7 +55,7 @@ public class HibernateConfCommon {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-//    //@Bean
+    //    //@Bean
 //    public LocalSessionFactoryBean sessionFactory(DataSource dataSource, Properties hibernateProperties) {
 //        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 //        sessionFactory.setDataSource(dataSource);

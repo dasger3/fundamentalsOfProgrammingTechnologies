@@ -1,6 +1,6 @@
 package voronin.model;
 
-import voronin.exception.ATUNotFoundException;
+import voronin.exception.ObjectNotFoundException;
 
 
 public enum TypeOfATU {
@@ -22,17 +22,17 @@ public enum TypeOfATU {
             return title;
         }
 
-        public static TypeOfATU getTypeByUrl(String url) throws ATUNotFoundException {
+        public static TypeOfATU getTypeByUrl(String url) throws ObjectNotFoundException {
                 for (TypeOfATU env : values()) {
                         if (env.getTitle().equals(url)) {
                                 return env;
                         }
                 }
-                throw new ATUNotFoundException("No enum found with url: [" + url + "]");
+                throw new ObjectNotFoundException(TypeOfATU.class.getName(), url);
         }
 
         @Override
         public String toString() {
-            return "Type of territorial unit: " + title + " | ";
+            return title;
         }
 }

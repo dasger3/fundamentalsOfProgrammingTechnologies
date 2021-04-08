@@ -8,11 +8,12 @@ import java.util.List;
 
 public interface ATUService {
 
-    List<AdministrativeTerritorialUnit> getATUs ();
+    List<AdministrativeTerritorialUnit> getAllATU ();
+
     AdministrativeTerritorialUnit getATUById(Long id);
     AdministrativeTerritorialUnit getATUByTitle(String title);
-//    //List<AdministrativeTerritorialUnit> getInternalList1ById (Long id);
-//    //List<AdministrativeTerritorialUnit> getInternalList2ById (Long id);
     List<AdministrativeTerritorialUnit> getAllATUByType (String type);
+
+    void saveATU (AdministrativeTerritorialUnit atu);
 
 }

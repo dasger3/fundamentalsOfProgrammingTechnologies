@@ -10,9 +10,8 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackages = {"voronin.controller","voronin.service","voronin.repository" })
 @Import(HibernateConfCommon.class)
 public class Application {
-
-        //            @Bean
-//    public ATUControll    er ATUApi() {
+    //            @Bean
+//    public ATUController ATUApi() {
 //        return new ATUController(ATUGetService());
 //    }
 //

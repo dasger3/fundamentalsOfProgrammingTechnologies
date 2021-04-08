@@ -3,20 +3,31 @@ package voronin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import voronin.exception.ObjectAlreadyExistsException;
 
 @SpringBootApplication
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ObjectAlreadyExistsException {
 
         SpringApplication.run(Main.class);
-//        ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
-//        final ATUFindController ATUController = context.getBean(ATUFindController.class);
-//
+
 //        View view = new ConsoleView();
-//        view.ShowAllATU(ATUController.allATU());
+//
+//
+//        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
+//
+//        ATUController atuController = context.getBean(ATUController.class);
+//
+//        view.ShowATUs(atuController.findAllATU());
+//
+//        AdministrativeTerritorialUnit atu1 = new AdministrativeTerritorialUnit();
+//        //atu1.setManager( new Manager("Rotaliy", "Volopyhin", "head"));
+//        atu1.setTypeOfATU(TypeOfATU.CITY);
+//        atu1.setTitle("Poltava");
+//        atu1.setSquare(123.0);
+//        atu1.setPopulation(1243);
+//        atuController.saveATU(atu1);
+//
+//        view.ShowATUs(atuController.findAllATU());
     }
 }
