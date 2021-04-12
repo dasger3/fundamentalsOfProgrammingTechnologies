@@ -7,18 +7,15 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table (name = "user")
-public class User {
+@Table(name = "role_user")
+public class RoleUser {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idRole;
     private String name;
-    private String surname;
-
-    @OneToOne
-    @JoinColumn(name = "role_id")
-    private RoleUser role;
+    private int levelAccess;
 }

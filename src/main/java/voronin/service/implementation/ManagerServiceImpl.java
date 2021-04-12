@@ -1,4 +1,4 @@
-package voronin.service;
+package voronin.service.implementation;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -6,12 +6,13 @@ import voronin.exception.ObjectAlreadyExistsException;
 import voronin.exception.ObjectNotFoundException;
 import voronin.model.Manager;
 import voronin.repository.ManagerRepository;
+import voronin.service.ManagerService;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ManagerServiceImpl implements ManagerService{
+public class ManagerServiceImpl implements ManagerService {
 
     private final ManagerRepository managerRepository;
 
