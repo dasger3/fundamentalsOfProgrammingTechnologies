@@ -30,7 +30,7 @@ public class ATUServiceImpl implements ATUService {
     }
 
     public AdministrativeTerritorialUnit getATUByTitle(String title) {
-        return  atuRepository.findByTitle(title);
+        return  atuRepository.findByTitle(title).orElseThrow(() -> new ObjectNotFoundException(AdministrativeTerritorialUnit.class.getName(), title));
     }
 
     public List<AdministrativeTerritorialUnit> getAllATUByType (String type) {

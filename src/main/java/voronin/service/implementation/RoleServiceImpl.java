@@ -14,38 +14,40 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RoleServiceImpl implements RoleService {
 
-    private final RoleRepository RoleRepository;
+    private final RoleRepository roleRepository;
 
     @Override
     public List<RoleUser> getAllRole() {
-        return RoleRepository.findAll();
+        return roleRepository.findAll();
     }
 
     @Override
     public RoleUser getRoleById(Long id) {
-        return RoleRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException(RoleUser.class.getName(), id));
+        return roleRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException(RoleUser.class.getName(), id));
     }
 
 
     @Override
     public void saveRole(RoleUser role) {
-        if (RoleRepository.findAll().contains(role))
+        if (roleRepository.findAll().contains(role))
             throw new ObjectAlreadyExistsException(RoleUser.class.getSimpleName(),role.getName());
-        RoleRepository.save(role);
+        roleRepository.save(role);
     }
 
     @Override
     public void deleteRole(Long id) {
-        if (RoleRepository.findById(id).isEmpty())
+        if (roleRepository.findById(id).isEmpty())
             throw new ObjectNotFoundException(RoleUser.class.getSimpleName(),id);
-        RoleRepository.deleteById(id);
+        roleRepository.deleteById(id);
     }
 
     @Override
     public void updateRole(Long id, RoleUser role) {
-        if (RoleRepository.findById(id).isEmpty())
+        if (roleRepository.findById(id).isEmpty())
             throw new ObjectNotFoundException(RoleUser.class.getSimpleName(),id);
+
         role.setIdRole(id);
-        RoleRepository.save(role);
+        System.out.println("!!!!!!!!!!!!!!1"+role.getIdRole());
+        roleRepository.save(role);
     }
 }

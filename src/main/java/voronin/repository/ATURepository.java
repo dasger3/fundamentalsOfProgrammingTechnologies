@@ -17,7 +17,7 @@ public interface ATURepository extends JpaRepository<AdministrativeTerritorialUn
 
     Optional<AdministrativeTerritorialUnit> findById (Long id);
 
-    AdministrativeTerritorialUnit findByTitle(String title);
+    Optional<AdministrativeTerritorialUnit> findByTitle(String title);
 
     List<AdministrativeTerritorialUnit> findAllByTypeOfATUEquals(TypeOfATU t);
 

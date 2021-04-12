@@ -1,9 +1,6 @@
 package voronin;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import voronin.context.Application;
 import voronin.controller.ManagerController;
@@ -19,23 +16,26 @@ public class RoleTestIT {
 
     RoleController roleController;
     List<RoleUser> expected = new LinkedList<>();
+    Long savedID = null;
     @Before
     public void setUp () {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
 
         roleController = context.getBean(RoleController.class);
 
-        expected.add(new RoleUser(1L, "admin", 3));
-        expected.add(new RoleUser(2L, "editor", 2));
-        expected.add(new RoleUser(3L, "user", 1));
+        expected = roleController.findAllRoles();
     }
     @Test
     public void findAllRoles_isFindCorrect_true () {
         //GIVEN
+        List<RoleUser> expected1 = new LinkedList<>();
+        expected1.add(new RoleUser(1L, "admin", 3));
+        expected1.add(new RoleUser(2L, "editor", 2));
+        expected1.add(new RoleUser(3L, "user", 1));
         //WHEN
         List<RoleUser> actual = roleController.findAllRoles();
         //THEN
-        Assert.assertEquals(expected,actual);
+        Assert.assertEquals(expected1,actual);
     }
     @Test
     public void findRoleByID_isFindCorrect_true () {
@@ -56,28 +56,47 @@ public class RoleTestIT {
     @Test
     public void saveRole_isSaveCorrect_true () {
         //GIVEN
-        RoleUser test = new RoleUser(4L, "test", 10);
+        RoleUser test = new RoleUser("test", 10);
         expected.add(test);
         //WHEN
         roleController.saveRole(test);
         List<RoleUser> actual = roleController.findAllRoles();
+        savedID = actual.get(actual.size()-1).getIdRole();
+        expected.get(expected.size()-1).setIdRole(savedID);
         //THEN
         Assert.assertEquals(expected,actual);
-        //roleController.deleteRole();
     }
     @Test
-    public void updateRole_isSaveCorrect_true () {
+    public void updateRole_isUpdateCorrect_true () {
         //GIVEN
-        RoleUser test = new RoleUser(4L,"testUpdate", 10);
-        expected.add(test);
-        //WHEN
-        roleController.updateRole(test.getIdRole(), test);
+        RoleUser test = new RoleUser("test", 10);
+        roleController.saveRole(test);
         List<RoleUser> actual = roleController.findAllRoles();
+        savedID = actual.get(actual.size()-1).getIdRole();
+
+        RoleUser test1 = new RoleUser("testUPDATE", 10);
+        expected.add(test1);
+        //WHEN
+        actual = roleController.updateRole(savedID,test1);
+        //THEN
+        Assert.assertEquals(expected,actual);
+    }
+    @Test
+    public void deleteRole_isDeleteCorrect_true () {
+        //GIVEN
+        RoleUser test = new RoleUser("test", 10);
+        roleController.saveRole(test);
+        List<RoleUser> actual = roleController.findAllRoles();
+        savedID = actual.get(actual.size()-1).getIdRole();
+        //WHEN
+        actual = roleController.deleteRole(savedID);
+        savedID = null;
         //THEN
         Assert.assertEquals(expected,actual);
     }
     @After
     public void tearDown () {
-        //roleController.deleteRole(4L);
+        if (savedID!=null)
+        roleController.deleteRole(savedID);
     }
 }

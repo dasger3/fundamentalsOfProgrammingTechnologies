@@ -21,4 +21,9 @@ public class User {
     @OneToOne
     @JoinColumn(name = "role_id")
     private RoleUser role;
+
+    public User (String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
 }
