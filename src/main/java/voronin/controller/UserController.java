@@ -41,4 +41,9 @@ public class UserController {
         userService.updateUser(id, user);
         return findAllUsers();
     }
+    @PatchMapping("/addRoleId")
+    public List<User> addRoleId(@RequestParam Long id, @RequestParam Long idRole) {
+        userService.addRoleId(id, idRole);
+        return findAllUsers();
+    }
 }

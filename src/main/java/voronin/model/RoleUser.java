@@ -18,4 +18,9 @@ public class RoleUser {
     private Long idRole;
     private String name;
     private int levelAccess;
+
+    public RoleUser (String name, int levelAccess) {
+        this.name = name;
+        this.levelAccess = levelAccess;
+    }
 }
