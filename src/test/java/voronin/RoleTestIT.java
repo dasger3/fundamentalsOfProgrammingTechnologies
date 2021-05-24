@@ -57,14 +57,12 @@ public class RoleTestIT {
     public void saveRole_isSaveCorrect_true () {
         //GIVEN
         RoleUser test = new RoleUser("test", 10);
-        expected.add(test);
         //WHEN
-        roleController.saveRole(test);
-        List<RoleUser> actual = roleController.findAllRoles();
-        savedID = actual.get(actual.size()-1).getIdRole();
-        expected.get(expected.size()-1).setIdRole(savedID);
+        RoleUser actual = roleController.saveRole(test);
+        savedID = actual.getIdRole();
+        test.setIdRole(savedID);
         //THEN
-        Assert.assertEquals(expected,actual);
+        Assert.assertEquals(test,actual);
     }
     @Test
     public void updateRole_isUpdateCorrect_true () {

@@ -28,10 +28,10 @@ public class RoleServiceImpl implements RoleService {
 
 
     @Override
-    public void saveRole(RoleUser role) {
+    public RoleUser saveRole(RoleUser role) {
         if (roleRepository.findAll().contains(role))
             throw new ObjectAlreadyExistsException(RoleUser.class.getSimpleName(),role.getName());
-        roleRepository.save(role);
+        return roleRepository.save(role);
     }
 
     @Override
@@ -47,7 +47,6 @@ public class RoleServiceImpl implements RoleService {
             throw new ObjectNotFoundException(RoleUser.class.getSimpleName(),id);
 
         role.setIdRole(id);
-        System.out.println("!!!!!!!!!!!!!!1"+role.getIdRole());
         roleRepository.save(role);
     }
 }

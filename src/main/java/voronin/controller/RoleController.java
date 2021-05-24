@@ -25,9 +25,8 @@ public class RoleController {
     }
 
     @PostMapping
-    public List<RoleUser> saveRole(@RequestBody RoleUser role) {
-        roleService.saveRole(role);
-        return findAllRoles();
+    public RoleUser saveRole(@RequestBody RoleUser role) {
+        return roleService.saveRole(role);
     }
 
     @DeleteMapping("/{id}")

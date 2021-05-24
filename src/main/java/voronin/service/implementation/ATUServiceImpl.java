@@ -82,4 +82,9 @@ public class ATUServiceImpl implements ATUService {
         atu.setManager(managerRepository.findById(idManager).orElseThrow(() -> new ObjectNotFoundException(Manager.class.getName(), idManager)));
         atuRepository.save(atu);
     }
+
+    public long getUsersCount(ArrayList<Manager> managers) {
+        return managers.stream().filter(manager -> manager.getManagerId() > 18).count();
+    }
+
 }
