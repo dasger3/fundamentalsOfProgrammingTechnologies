@@ -31,27 +31,27 @@ public class ATUTestIT {
         ATUController = context.getBean(ATUController.class);
         managerController = context.getBean(ManagerController.class);
 
-        expected = ATUController.findAllATU();
+        expected = ATUController.findAllATU().getBody();
     }
     @Test
     public void findAllATUs_isFindCorrect_true () {
         //GIVEN
         List<AdministrativeTerritorialUnit> expected1 = new LinkedList<>();
-        expected1.add(new AdministrativeTerritorialUnit(1L, null,        null,  TypeOfATU.REGION, "Kyivska", 4141, 123, managerController.findManagerById(1L)));
-        expected1.add(new AdministrativeTerritorialUnit(2L,  expected1.get(0), null,  TypeOfATU.CITY, "Kyiv", 876, 636363, managerController.findManagerById(2L)));
-        expected1.add(new AdministrativeTerritorialUnit(3L,  expected1.get(0), null,  TypeOfATU.CITY, "Poltava", 5346, 234, managerController.findManagerById(3L)));
-        expected1.add(new AdministrativeTerritorialUnit(4L,  expected1.get(0), null,  TypeOfATU.VILLAGE, "Veliky Vuyki", 876, 441, managerController.findManagerById(4L)));
-        expected1.add(new AdministrativeTerritorialUnit(5L,  expected1.get(0), null,  TypeOfATU.VILLAGE, "Sinelniko", 234, 12, managerController.findManagerById(5L)));
-        expected1.add(new AdministrativeTerritorialUnit(6L,  expected1.get(1), null,  TypeOfATU.DISTRICT, "Center", 23, 234, managerController.findManagerById(6L)));
-        expected1.add(new AdministrativeTerritorialUnit(7L,  expected1.get(1), null,  TypeOfATU.DISTRICT, "South", 12, 414, managerController.findManagerById(7L)));
-        expected1.add(new AdministrativeTerritorialUnit(8L,  expected1.get(2), null,  TypeOfATU.DISTRICT, "West", 626, 53, managerController.findManagerById(8L)));
-        expected1.add(new AdministrativeTerritorialUnit(9L,  expected1.get(2), null,  TypeOfATU.DISTRICT, "Babuskin", 23, 121, managerController.findManagerById(9L)));
-        expected1.add(new AdministrativeTerritorialUnit(10L, expected1.get(2), null,  TypeOfATU.DISTRICT, "Idustrial", 12, 121, managerController.findManagerById(10L)));
+        expected1.add(new AdministrativeTerritorialUnit(1L, null,        null,  TypeOfATU.REGION, "Kyivska", 4141, 123, managerController.findManagerById(1L).getBody()));
+        expected1.add(new AdministrativeTerritorialUnit(2L,  expected1.get(0), null,  TypeOfATU.CITY, "Kyiv", 876, 636363, managerController.findManagerById(2L).getBody()));
+        expected1.add(new AdministrativeTerritorialUnit(3L,  expected1.get(0), null,  TypeOfATU.CITY, "Poltava", 5346, 234, managerController.findManagerById(3L).getBody()));
+        expected1.add(new AdministrativeTerritorialUnit(4L,  expected1.get(0), null,  TypeOfATU.VILLAGE, "Veliky Vuyki", 876, 441, managerController.findManagerById(4L).getBody()));
+        expected1.add(new AdministrativeTerritorialUnit(5L,  expected1.get(0), null,  TypeOfATU.VILLAGE, "Sinelniko", 234, 12, managerController.findManagerById(5L).getBody()));
+        expected1.add(new AdministrativeTerritorialUnit(6L,  expected1.get(1), null,  TypeOfATU.DISTRICT, "Center", 23, 234, managerController.findManagerById(6L).getBody()));
+        expected1.add(new AdministrativeTerritorialUnit(7L,  expected1.get(1), null,  TypeOfATU.DISTRICT, "South", 12, 414, managerController.findManagerById(7L).getBody()));
+        expected1.add(new AdministrativeTerritorialUnit(8L,  expected1.get(2), null,  TypeOfATU.DISTRICT, "West", 626, 53, managerController.findManagerById(8L).getBody()));
+        expected1.add(new AdministrativeTerritorialUnit(9L,  expected1.get(2), null,  TypeOfATU.DISTRICT, "Babuskin", 23, 121, managerController.findManagerById(9L).getBody()));
+        expected1.add(new AdministrativeTerritorialUnit(10L, expected1.get(2), null,  TypeOfATU.DISTRICT, "Idustrial", 12, 121, managerController.findManagerById(10L).getBody()));
         expected1.get(0).setCenter_id(expected1.get(1));
         expected1.get(1).setCenter_id(expected1.get(3));
         expected1.get(2).setCenter_id(expected1.get(9));
         //WHEN
-        List<AdministrativeTerritorialUnit> actual = ATUController.findAllATU();
+        List<AdministrativeTerritorialUnit> actual = ATUController.findAllATU().getBody();
         //THEN
         Assert.assertEquals(expected1,actual);
     }
@@ -59,7 +59,7 @@ public class ATUTestIT {
     public void findATUByID_isFindCorrect_true () {
         //GIVEN
         //WHEN
-        AdministrativeTerritorialUnit actual = ATUController.findATUById(2L);
+        AdministrativeTerritorialUnit actual = ATUController.findATUById(2L).getBody();
         //THEN
         Assert.assertEquals(expected.get(1),actual);
     }
@@ -74,7 +74,7 @@ public class ATUTestIT {
     public void findATUByName_isFindCorrect_true () {
         //GIVEN
         //WHEN
-        AdministrativeTerritorialUnit actual = ATUController.findATUByTitle("Kyivska");
+        AdministrativeTerritorialUnit actual = ATUController.findATUByTitle("Kyivska").getBody();
         //THEN
         Assert.assertEquals(expected.get(0),actual);
     }
@@ -92,7 +92,7 @@ public class ATUTestIT {
         expected.add(test);
         //WHEN
         ATUController.saveATU(test);
-        List<AdministrativeTerritorialUnit> actual = ATUController.findAllATU();
+        List<AdministrativeTerritorialUnit> actual = ATUController.findAllATU().getBody();
         savedID = actual.get(actual.size()-1).getAtuId();
         expected.get(expected.size()-1).setAtuId(savedID);
         //THEN
@@ -103,13 +103,13 @@ public class ATUTestIT {
         //GIVEN
         AdministrativeTerritorialUnit test = new AdministrativeTerritorialUnit(TypeOfATU.CITY,"testName", 1,2);
         ATUController.saveATU(test);
-        List<AdministrativeTerritorialUnit> actual = ATUController.findAllATU();
+        List<AdministrativeTerritorialUnit> actual = ATUController.findAllATU().getBody();
         savedID = actual.get(actual.size()-1).getAtuId();
 
         AdministrativeTerritorialUnit test1 = new AdministrativeTerritorialUnit(TypeOfATU.CITY,"testUPDATENAME", 2, 4);
         expected.add(test1);
         //WHEN
-        actual = ATUController.updateATU(savedID,test1);
+        actual = ATUController.updateATU(savedID,test1).getBody();
         //THEN
         Assert.assertEquals(expected,actual);
     }
@@ -118,10 +118,10 @@ public class ATUTestIT {
         //GIVEN
         AdministrativeTerritorialUnit test = new AdministrativeTerritorialUnit(TypeOfATU.CITY,"testName", 1,2);
         ATUController.saveATU(test);
-        List<AdministrativeTerritorialUnit> actual = ATUController.findAllATU();
+        List<AdministrativeTerritorialUnit> actual = ATUController.findAllATU().getBody();
         savedID = actual.get(actual.size()-1).getAtuId();
         //WHEN
-        actual = ATUController.deleteATU(savedID);
+        actual = ATUController.deleteATU(savedID).getBody();
         savedID = null;
         //THEN
         Assert.assertEquals(expected,actual);
@@ -132,13 +132,13 @@ public class ATUTestIT {
         AdministrativeTerritorialUnit expectedAtu = new AdministrativeTerritorialUnit(TypeOfATU.CITY,"testName", 1,2);
         ATUController.saveATU(expectedAtu);
 
-        List<AdministrativeTerritorialUnit> actual = ATUController.findAllATU();
+        List<AdministrativeTerritorialUnit> actual = ATUController.findAllATU().getBody();
         savedID = actual.get(actual.size()-1).getAtuId();
         //WHEN
         ATUController.addParentATU(savedID,1L);
-        expectedAtu.setParent(ATUController.findATUById(1L));
+        expectedAtu.setParent(ATUController.findATUById(1L).getBody());
         //THEN
-        Assert.assertEquals(expectedAtu,ATUController.findATUById(savedID));
+        Assert.assertEquals(expectedAtu,ATUController.findATUById(savedID).getBody());
     }
     @Test
     public void addCenter_isAddCorrect_true () {
@@ -146,13 +146,13 @@ public class ATUTestIT {
         AdministrativeTerritorialUnit expectedAtu = new AdministrativeTerritorialUnit(TypeOfATU.CITY,"testName", 1,2);
         ATUController.saveATU(expectedAtu);
 
-        List<AdministrativeTerritorialUnit> actual = ATUController.findAllATU();
+        List<AdministrativeTerritorialUnit> actual = ATUController.findAllATU().getBody();
         savedID = actual.get(actual.size()-1).getAtuId();
         //WHEN
         ATUController.addCenterATU(savedID,1L);
-        expectedAtu.setCenter_id(ATUController.findATUById(1L));
+        expectedAtu.setCenter_id(ATUController.findATUById(1L).getBody());
         //THEN
-        Assert.assertEquals(expectedAtu,ATUController.findATUById(savedID));
+        Assert.assertEquals(expectedAtu,ATUController.findATUById(savedID).getBody());
     }
     @Test
     public void addManager_isAddCorrect_true () {
@@ -161,13 +161,13 @@ public class ATUTestIT {
         AdministrativeTerritorialUnit expectedAtu = new AdministrativeTerritorialUnit(TypeOfATU.CITY,"testName", 1,2);
         ATUController.saveATU(expectedAtu);
 
-        List<AdministrativeTerritorialUnit> actual = ATUController.findAllATU();
+        List<AdministrativeTerritorialUnit> actual = ATUController.findAllATU().getBody();
         savedID = actual.get(actual.size()-1).getAtuId();
         //WHEN
         ATUController.addManagerToATU(savedID,11L);
         expectedAtu.setManager(managerRepository.findById(11L).orElseThrow());
         //THEN
-        Assert.assertEquals(expectedAtu,ATUController.findATUById(savedID));
+        Assert.assertEquals(expectedAtu,ATUController.findATUById(savedID).getBody());
     }
     @After
     public void tearDown () {

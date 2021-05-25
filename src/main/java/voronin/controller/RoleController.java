@@ -1,6 +1,7 @@
 package voronin.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import voronin.model.RoleUser;
 import voronin.service.RoleService;
@@ -15,13 +16,13 @@ public class RoleController {
     private final RoleService roleService;
 
     @GetMapping("/")
-    public List<RoleUser> findAllRoles() {
-        return roleService.getAllRole();
+    public ResponseEntity<List<RoleUser>> findAllRoles() {
+        return ResponseEntity.ok(roleService.getAllRole());
     }
 
     @GetMapping("/{id}")
-    public RoleUser findRoleById(@PathVariable Long id) {
-        return roleService.getRoleById(id);
+    public ResponseEntity<RoleUser> findRoleById(@PathVariable Long id) {
+        return ResponseEntity.ok(roleService.getRoleById(id));
     }
 
     @PostMapping
@@ -30,13 +31,13 @@ public class RoleController {
     }
 
     @DeleteMapping("/{id}")
-    public List<RoleUser> deleteRole(@PathVariable Long id) {
+    public ResponseEntity<List<RoleUser>> deleteRole(@PathVariable Long id) {
         roleService.deleteRole(id);
         return findAllRoles();
     }
 
     @PutMapping("/{id}")
-    public List<RoleUser> updateRole(@PathVariable Long id, @RequestBody RoleUser role) {
+    public ResponseEntity<List<RoleUser>> updateRole(@PathVariable Long id, @RequestBody RoleUser role) {
         roleService.updateRole(id, role);
         return findAllRoles();
     }

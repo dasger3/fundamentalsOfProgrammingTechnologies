@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Data
 @AllArgsConstructor
@@ -16,8 +17,11 @@ public class Manager {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long managerId;
 
+    @NotBlank
     private String name;
+    @NotBlank
     private String surname;
+    @NotBlank
     private String position;
 
 

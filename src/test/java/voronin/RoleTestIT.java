@@ -5,6 +5,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import voronin.context.Application;
 import voronin.controller.ManagerController;
 import voronin.controller.RoleController;
+import voronin.dto.RoleResponseRoleTransfer;
 import voronin.exception.ObjectNotFoundException;
 import voronin.model.RoleUser;
 
@@ -23,7 +24,7 @@ public class RoleTestIT {
 
         roleController = context.getBean(RoleController.class);
 
-        expected = roleController.findAllRoles();
+        expected = roleController.findAllRoles().getBody();
     }
     @Test
     public void findAllRoles_isFindCorrect_true () {
@@ -33,7 +34,7 @@ public class RoleTestIT {
         expected1.add(new RoleUser(2L, "editor", 2));
         expected1.add(new RoleUser(3L, "user", 1));
         //WHEN
-        List<RoleUser> actual = roleController.findAllRoles();
+        List<RoleUser> actual = roleController.findAllRoles().getBody();
         //THEN
         Assert.assertEquals(expected1,actual);
     }
@@ -42,7 +43,7 @@ public class RoleTestIT {
         //GIVEN
         RoleUser expected = new RoleUser(2L, "editor", 2);
         //WHEN
-        RoleUser actual = roleController.findRoleById(2L);
+        RoleUser actual = roleController.findRoleById(2L).getBody();
         //THEN
         Assert.assertEquals(expected,actual);
     }
@@ -69,13 +70,13 @@ public class RoleTestIT {
         //GIVEN
         RoleUser test = new RoleUser("test", 10);
         roleController.saveRole(test);
-        List<RoleUser> actual = roleController.findAllRoles();
+        List<RoleUser> actual = roleController.findAllRoles().getBody();
         savedID = actual.get(actual.size()-1).getIdRole();
 
         RoleUser test1 = new RoleUser("testUPDATE", 10);
         expected.add(test1);
         //WHEN
-        actual = roleController.updateRole(savedID,test1);
+        actual = roleController.updateRole(savedID,test1).getBody();
         //THEN
         Assert.assertEquals(expected,actual);
     }
@@ -84,10 +85,10 @@ public class RoleTestIT {
         //GIVEN
         RoleUser test = new RoleUser("test", 10);
         roleController.saveRole(test);
-        List<RoleUser> actual = roleController.findAllRoles();
+        List<RoleUser> actual = roleController.findAllRoles().getBody();
         savedID = actual.get(actual.size()-1).getIdRole();
         //WHEN
-        actual = roleController.deleteRole(savedID);
+        actual = roleController.deleteRole(savedID).getBody();
         savedID = null;
         //THEN
         Assert.assertEquals(expected,actual);

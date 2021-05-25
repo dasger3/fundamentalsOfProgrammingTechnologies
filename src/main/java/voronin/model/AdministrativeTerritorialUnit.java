@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 
@@ -38,6 +39,7 @@ public class AdministrativeTerritorialUnit {
     @Enumerated(EnumType.STRING)
     private TypeOfATU typeOfATU;
 
+    @NotBlank
     @Column
     private String title;
 

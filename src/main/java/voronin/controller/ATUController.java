@@ -1,6 +1,7 @@
 package voronin.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import voronin.exception.ObjectAlreadyExistsException;
 import voronin.model.AdministrativeTerritorialUnit;
@@ -16,61 +17,61 @@ public class ATUController {
     private final ATUService atuService;
 
     @GetMapping("/")
-    public List<AdministrativeTerritorialUnit> findAllATU () {
-        return atuService.getAllATU();
+    public ResponseEntity<List<AdministrativeTerritorialUnit>> findAllATU () {
+        return ResponseEntity.ok(atuService.getAllATU());
     }
 
     @GetMapping("/{id}")
-    public AdministrativeTerritorialUnit findATUById (@PathVariable Long id) {
-        return atuService.getATUById(id);
+    public ResponseEntity<AdministrativeTerritorialUnit> findATUById (@PathVariable Long id) {
+        return ResponseEntity.ok(atuService.getATUById(id));
     }
 
     @GetMapping("/name/{title}")
-    public AdministrativeTerritorialUnit findATUByTitle (@PathVariable String title) {
-        return atuService.getATUByTitle(title);
+    public ResponseEntity<AdministrativeTerritorialUnit> findATUByTitle (@PathVariable String title) {
+        return ResponseEntity.ok(atuService.getATUByTitle(title));
     }
 
     @GetMapping("/type/{type}")
-    public List<AdministrativeTerritorialUnit> findAllATUByType (@PathVariable String type) {
-        return atuService.getAllATUByType(type);
+    public ResponseEntity<List<AdministrativeTerritorialUnit>> findAllATUByType (@PathVariable String type) {
+        return ResponseEntity.ok(atuService.getAllATUByType(type));
     }
 
     @PostMapping
-    public List<AdministrativeTerritorialUnit> saveATU(@RequestBody AdministrativeTerritorialUnit atu) {
+    public ResponseEntity<List<AdministrativeTerritorialUnit>> saveATU(@RequestBody AdministrativeTerritorialUnit atu) {
         atuService.saveATU(atu);
-        return atuService.getAllATU();
+        return ResponseEntity.ok(atuService.getAllATU());
     }
 
     @DeleteMapping("/{id}")
-    public List<AdministrativeTerritorialUnit> deleteATU(@PathVariable Long id) {
+    public ResponseEntity<List<AdministrativeTerritorialUnit>> deleteATU(@PathVariable Long id) {
         atuService.deleteATU(id);
-        return atuService.getAllATU();
+        return ResponseEntity.ok(atuService.getAllATU());
     }
 
     @PutMapping("/{id}")
-    public List<AdministrativeTerritorialUnit> updateATU(@PathVariable Long id, @RequestBody AdministrativeTerritorialUnit atu) {
+    public ResponseEntity<List<AdministrativeTerritorialUnit>> updateATU(@PathVariable Long id, @RequestBody AdministrativeTerritorialUnit atu) {
         atuService.updateATU(id, atu);
-        return atuService.getAllATU();
+        return ResponseEntity.ok(atuService.getAllATU());
     }
 
     @PatchMapping("/addParentId/")
     @ResponseBody
-    public List<AdministrativeTerritorialUnit> addParentATU(@RequestParam Long id, @RequestParam Long idParent) {
+    public ResponseEntity<List<AdministrativeTerritorialUnit>> addParentATU(@RequestParam Long id, @RequestParam Long idParent) {
         atuService.addParentATU(id,idParent);
-        return atuService.getAllATU();
+        return ResponseEntity.ok(atuService.getAllATU());
     }
 
     @PatchMapping("/addCenterId/")
     @ResponseBody
-    public List<AdministrativeTerritorialUnit> addCenterATU(@RequestParam Long id, @RequestParam Long idCenter) {
+    public ResponseEntity<List<AdministrativeTerritorialUnit>> addCenterATU(@RequestParam Long id, @RequestParam Long idCenter) {
         atuService.addCenterATU(id,idCenter);
-        return atuService.getAllATU();
+        return ResponseEntity.ok(atuService.getAllATU());
     }
 
     @PatchMapping("/addManager/")
     @ResponseBody
-    public List<AdministrativeTerritorialUnit> addManagerToATU(@RequestParam Long id, @RequestParam Long idManager) {
+    public ResponseEntity<List<AdministrativeTerritorialUnit>> addManagerToATU(@RequestParam Long id, @RequestParam Long idManager) {
         atuService.addManagerToATU(id,idManager);
-        return atuService.getAllATU();
+        return ResponseEntity.ok(atuService.getAllATU());
     }
 }

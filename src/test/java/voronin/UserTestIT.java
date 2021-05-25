@@ -31,7 +31,7 @@ public class UserTestIT {
 
         userController = context.getBean(UserController.class);
 
-        expected = userController.findAllUsers();
+        expected = userController.findAllUsers().getBody();
     }
     @Test
     public void findAllUsers_isFindCorrect_true () {
@@ -40,7 +40,7 @@ public class UserTestIT {
         List<User> expected1 = new LinkedList<>();
         expected1.add(new User(1L, "Admin","Admin", roleRepository.findById(1L).orElseThrow()));
         //WHEN
-        List<User> actual = userController.findAllUsers();
+        List<User> actual = userController.findAllUsers().getBody();
         //THEN
         Assert.assertEquals(expected1,actual);
     }
@@ -48,7 +48,7 @@ public class UserTestIT {
     public void findUserByID_isFindCorrect_true () {
         //GIVEN
         //WHEN
-        User actual = userController.findUserById(1L);
+        User actual = userController.findUserById(1L).getBody();
         //THEN
         Assert.assertEquals(expected.get(0),actual);
     }
@@ -66,7 +66,7 @@ public class UserTestIT {
         expected.add(test);
         //WHEN
         userController.saveUser(test);
-        List<User> actual = userController.findAllUsers();
+        List<User> actual = userController.findAllUsers().getBody();
         savedID = actual.get(actual.size()-1).getId();
         expected.get(expected.size()-1).setId(savedID);
         //THEN
@@ -77,13 +77,13 @@ public class UserTestIT {
         //GIVEN
         User test = new User("testName", "testSurname");
         userController.saveUser(test);
-        List<User> actual = userController.findAllUsers();
+        List<User> actual = userController.findAllUsers().getBody();
         savedID = actual.get(actual.size()-1).getId();
 
         User test1 = new User("testUPDATENAME", "testUPDATESURNAME");
         expected.add(test1);
         //WHEN
-        actual = userController.updateUser(savedID,test1);
+        actual = userController.updateUser(savedID,test1).getBody();
         //THEN
         Assert.assertEquals(expected,actual);
     }
@@ -92,10 +92,10 @@ public class UserTestIT {
         //GIVEN
         User test = new User("testName", "testSurname");
         userController.saveUser(test);
-        List<User> actual = userController.findAllUsers();
+        List<User> actual = userController.findAllUsers().getBody();
         savedID = actual.get(actual.size()-1).getId();
         //WHEN
-        actual = userController.deleteUser(savedID);
+        actual = userController.deleteUser(savedID).getBody();
         savedID = null;
         //THEN
         Assert.assertEquals(expected,actual);
@@ -107,13 +107,13 @@ public class UserTestIT {
         User expectedUser = new User("testName", "testSurname");
         userController.saveUser(expectedUser);
 
-        List<User> actual = userController.findAllUsers();
+        List<User> actual = userController.findAllUsers().getBody();
         savedID = actual.get(actual.size()-1).getId();
         //WHEN
         userController.addRoleId(savedID,1L);
         expectedUser.setRole(roleRepository.findById(1L).orElseThrow());
         //THEN
-        Assert.assertEquals(expectedUser,userController.findUserById(savedID));
+        Assert.assertEquals(expectedUser,userController.findUserById(savedID).getBody());
     }
 
     @After

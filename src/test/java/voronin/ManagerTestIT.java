@@ -24,7 +24,7 @@ public class ManagerTestIT {
 
         managerController = context.getBean(ManagerController.class);
 
-        expected = managerController.findAllManager();
+        expected = managerController.findAllManager().getBody();
     }
     @Test
     public void findAllManagers_isFindCorrect_true () {
@@ -42,7 +42,7 @@ public class ManagerTestIT {
         expected1.add(new Manager(10L, "Polina", "Lyashenko", "head"));
         expected1.add(new Manager(11L, "Nikolay",   "Voronin", "head"));
         //WHEN
-        List<Manager> actual = managerController.findAllManager();
+        List<Manager> actual = managerController.findAllManager().getBody();
         //THEN
         Assert.assertEquals(expected1,actual);
     }
@@ -50,7 +50,7 @@ public class ManagerTestIT {
     public void findManagerByID_isFindCorrect_true () {
         //GIVEN
         //WHEN
-        Manager actual = managerController.findManagerById(1L);
+        Manager actual = managerController.findManagerById(1L).getBody();
         //THEN
         Assert.assertEquals(expected.get(0),actual);
     }
@@ -67,7 +67,7 @@ public class ManagerTestIT {
         List<Manager> expected1 = new LinkedList<>();
         expected1.add(expected.get(0));
         //WHEN
-        List<Manager> actual = managerController.findManagerByName("Alexsey");
+        List<Manager> actual = managerController.findManagerByName("Alexsey").getBody();
         //THEN
         Assert.assertEquals(expected1,actual);
     }
@@ -85,7 +85,7 @@ public class ManagerTestIT {
         expected.add(test);
         //WHEN
         managerController.saveManager(test);
-        List<Manager> actual = managerController.findAllManager();
+        List<Manager> actual = managerController.findAllManager().getBody();
         savedID = actual.get(actual.size()-1).getManagerId();
         expected.get(expected.size()-1).setManagerId(savedID);
         //THEN
@@ -96,13 +96,13 @@ public class ManagerTestIT {
         //GIVEN
         Manager test = new Manager("testName", "testSurname","testposition");
         managerController.saveManager(test);
-        List<Manager> actual = managerController.findAllManager();
+        List<Manager> actual = managerController.findAllManager().getBody();
         savedID = actual.get(actual.size()-1).getManagerId();
 
         Manager test1 = new Manager("testUPDATENAME", "testUPDATESURNAME", "testpositionUPDATE");
         expected.add(test1);
         //WHEN
-        actual = managerController.updateManager(savedID,test1);
+        actual = managerController.updateManager(savedID,test1).getBody();
         //THEN
         Assert.assertEquals(expected,actual);
     }
@@ -111,10 +111,10 @@ public class ManagerTestIT {
         //GIVEN
         Manager test = new Manager("testName", "testSurname","testPosition");
         managerController.saveManager(test);
-        List<Manager> actual = managerController.findAllManager();
+        List<Manager> actual = managerController.findAllManager().getBody();
         savedID = actual.get(actual.size()-1).getManagerId();
         //WHEN
-        actual = managerController.deleteManager(savedID);
+        actual = managerController.deleteManager(savedID).getBody();
         savedID = null;
         //THEN
         Assert.assertEquals(expected,actual);

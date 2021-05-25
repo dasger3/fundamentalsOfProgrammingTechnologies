@@ -1,12 +1,14 @@
 package voronin.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import voronin.model.AdministrativeTerritorialUnit;
 import voronin.model.Manager;
 import voronin.service.ManagerService;
 
 import java.util.List;
+
 
 @RequiredArgsConstructor
 @RestController
@@ -16,34 +18,34 @@ public class ManagerController {
     private final ManagerService managerService;
 
     @GetMapping("/")
-    public List<Manager> findAllManager () {
-        return managerService.getAllManager();
+    public ResponseEntity<List<Manager>> findAllManager () {
+        return ResponseEntity.ok(managerService.getAllManager());
     }
 
     @GetMapping("/{id}")
-    public Manager findManagerById (@PathVariable Long id) {
-        return managerService.getManagerById(id);
+    public ResponseEntity<Manager> findManagerById (@PathVariable Long id) {
+        return ResponseEntity.ok(managerService.getManagerById(id));
     }
 
     @GetMapping("/name/{name}")
-    public List<Manager> findManagerByName (@PathVariable String name) {
-        return managerService.getManagerByName(name);
+    public ResponseEntity<List<Manager>> findManagerByName (@PathVariable String name) {
+        return ResponseEntity.ok(managerService.getManagerByName(name));
     }
 
     @PostMapping
-    public List<Manager> saveManager (@RequestBody Manager manager) {
+    public ResponseEntity<List<Manager>> saveManager (@RequestBody Manager manager) {
         managerService.saveManager(manager);
         return findAllManager();
     }
 
     @DeleteMapping("/{id}")
-    public List<Manager> deleteManager (@PathVariable Long id) {
+    public ResponseEntity<List<Manager>> deleteManager (@PathVariable Long id) {
         managerService.deleteManager(id);
         return findAllManager();
     }
 
     @PutMapping("/{id}")
-    public List<Manager> updateManager (@PathVariable Long id, @RequestBody Manager manager) {
+    public ResponseEntity<List<Manager>> updateManager (@PathVariable Long id, @RequestBody Manager manager) {
         managerService.updateManager(id, manager);
         return findAllManager();
     }

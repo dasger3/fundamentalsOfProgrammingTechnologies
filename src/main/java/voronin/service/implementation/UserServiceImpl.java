@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
         if (userRepository.findAll().contains(user))
             throw new ObjectAlreadyExistsException(User.class.getSimpleName(),user.getName());
         if(user.getRole() == null)
-            user.setRole(roleRepository.findById(1L).orElseThrow(() -> new ObjectNotFoundException(RoleUser.class.getName(), 1L)));
+            user.setRole(roleRepository.findById(3L).orElseThrow(() -> new ObjectNotFoundException(RoleUser.class.getName(), 1L)));
         userRepository.save(user);
     }
 
